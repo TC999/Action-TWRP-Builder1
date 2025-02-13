@@ -5,23 +5,23 @@ on:
   workflow_dispatch:
     inputs:
       MANIFEST_URL:
-        description: 'MANIFEST_URL (if want to use SSH keys, use git@github.com:XXXXX)'
+        description: 'twrp 清单 (if want to use SSH keys, use git@github.com:XXXXX)'
         required: true
         default: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni'
       MANIFEST_BRANCH:
-        description: 'MANIFEST_BRANCH'
+        description: '清单分支'
         required: true
         default: 'twrp-9.0'
       DEVICE_TREE_URL:
-        description: 'DEVICE_TREE_URL'
+        description: '设备树'
         required: true
         default: 'https://github.com/TC999/n107_6739_66_p'
       DEVICE_TREE_BRANCH:
-        description: 'DEVICE_TREE_BRANCH'
+        description: '设备树分支'
         required: true
         default: 'main'
       DEVICE_PATH:
-        description: 'DEVICE_PATH'
+        description: '设备路径'
         required: true
         default: 'device/alps/n107_6739_66_p'
       COMMON_TREE_URL:
@@ -31,15 +31,15 @@ on:
         description: 'COMMON_PATH (if no common tree, leave blank)'
         required: false
       DEVICE_NAME:
-        description: 'DEVICE_NAME'
+        description: '设备名'
         required: true
         default: 'n107_6739_66_p'
       MAKEFILE_NAME:
-        description: 'MAKEFILE_NAME'
+        description: '配置文件名'
         required: true
         default: 'omni_n107_6739_66_p'
       BUILD_TARGET:
-        description: 'BUILD_TARGET'
+        description: '编译目标'
         required: true
         default: 'recovery'
 
