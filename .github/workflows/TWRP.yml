@@ -53,7 +53,7 @@ jobs:
 
     - name: 再次禁用 snap
       run: |
-        sudo mv preferences.d /etc/apt
+        sudo mv preferences.d /etc/apt/preferences.d
         sudo apt update
         sudo add-apt-repository ppa:mozillateam/ppa -y
         sudo apt install -t 'o=LP-PPA-mozillateam' firefox -y
