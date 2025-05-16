@@ -20,6 +20,7 @@ jobs:
       run: sudo apt-get install -y language-pack-zh-hans
 
     - name: 删除 snap
+      continue-on-error: true
       run: |
         for p in $(snap list | awk '{print $1}'); do
           sudo snap remove $p
