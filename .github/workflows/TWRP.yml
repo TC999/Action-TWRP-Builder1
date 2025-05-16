@@ -19,6 +19,11 @@ jobs:
     - name: 汉化
       run: sudo apt-get install -y language-pack-zh-hans
 
+    # Cleanup The Actions Workspace Using Custom Composite Run Actions
+    - name: 清理
+      uses: rokibhasansagar/slimhub_actions@main
+      # That's it! Now use your normal steps
+
     - name: 删除 snap
       continue-on-error: true
       run: |
@@ -49,11 +54,6 @@ jobs:
         sudo apt update
         sudo add-apt-repository ppa:mozillateam/ppa
         sudo apt install -t 'o=LP-PPA-mozillateam' firefox
-
-    # Cleanup The Actions Workspace Using Custom Composite Run Actions
-    - name: 清理
-      uses: rokibhasansagar/slimhub_actions@main
-      # That's it! Now use your normal steps
 
     - name: 准备环境
       run: |
