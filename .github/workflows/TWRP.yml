@@ -50,10 +50,13 @@ jobs:
         sudo rm -rf /var/lib/snapd
         sudo rm -rf /var/cache/snapd
         
+
+    - name: 再次禁用 snap
+      run: |
         sudo mv preferences.d /etc/apt
         sudo apt update
-        sudo add-apt-repository ppa:mozillateam/ppa
-        sudo apt install -t 'o=LP-PPA-mozillateam' firefox
+        sudo add-apt-repository ppa:mozillateam/ppa -y
+        sudo apt install -t 'o=LP-PPA-mozillateam' firefox -y
 
     - name: 准备环境
       run: |
