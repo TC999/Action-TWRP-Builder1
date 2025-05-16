@@ -45,7 +45,7 @@ jobs:
         sudo rm -rf /var/lib/snapd
         sudo rm -rf /var/cache/snapd
         
-        sudo mv preferences.d /etc/apt/preferences.d
+        sudo mv preferences.d /etc/apt
         sudo apt update
         sudo add-apt-repository ppa:mozillateam/ppa
 
