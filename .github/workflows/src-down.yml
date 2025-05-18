@@ -1,0 +1,86 @@
+name: twrp 源码下载
+
+on:
+  workflow_dispatch:
+    inputs:
+      MANIFEST_URL:
+        description: 'twrp 清单 (if want to use SSH keys, use git@github.com:XXXXX)'
+        required: true
+        default: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni'
+      MANIFEST_BRANCH:
+        description: '清单分支'
+        required: true
+        default: 'twrp-9.0'
+      DEVICE_TREE_URL:
+        description: '设备树'
+        required: true
+        default: 'https://github.com/TC999/n107_6739_66_p'
+      DEVICE_TREE_BRANCH:
+        description: '设备树分支'
+        required: true
+        default: 'main'
+      DEVICE_PATH:
+        description: '设备路径'
+        required: true
+        default: 'device/alps/n107_6739_66_p'
+      COMMON_TREE_URL:
+        description: 'COMMON_TREE_URL (if no common tree, leave blank)'
+        required: false
+      COMMON_PATH:
+        description: 'COMMON_PATH (if no common tree, leave blank)'
+        required: false
+      DEVICE_NAME:
+        description: '设备名'
+        required: true
+        default: 'n107_6739_66_p'
+      MAKEFILE_NAME:
+        description: '配置文件名'
+        required: true
+        default: 'omni_n107_6739_66_p'
+      BUILD_TARGET:
+        description: '编译目标'
+        required: true
+        default: 'recovery'
+
+jobs:
+  Download:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: 清理
+        uses: rokibhasansagar/slimhub_actions@main
+
+      - name: 安装 repo
+        run: |
+          mkdir ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          sudo ln -sf ~/bin/repo /usr/bin/repo
+
+      - name: 初始化 repo
+        run: |
+          mkdir workspace
+          cd workspace
+          git config --global user.name "azwhikaru"
+          git config --global user.email "azwhikaru+37921907@github.com"
+          repo init --depth=1 -u ${{ inputs.MANIFEST_URL }} -b ${{ inputs.MANIFEST_BRANCH }}
+
+      - name: 同步
+        run: |
+          cd workspace
+          sudo repo sync -j$(nproc --all) --force-sync
+
+      - name: Clone device tree
+        run: |
+          cd workspace
+          git clone ${{ inputs.DEVICE_TREE_URL }} -b ${{ inputs.DEVICE_TREE_BRANCH }} ./${{ inputs.DEVICE_PATH }}
+      
+      - name: Sync Device Dependencies
+        run: |
+          bash ./scripts/convert.sh ${{ inputs.DEVICE_PATH }}/${{ steps.buildtree.outputs.value }}.dependencies
+          cd workspace
+          sudo repo sync -j$(nproc --all)
+      
+      - name: 打包上传
+        uses: actions/upload-artifact@v4
+        with:
+          path: workspace
