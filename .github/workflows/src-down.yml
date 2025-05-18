@@ -76,7 +76,7 @@ jobs:
       
       - name: Sync Device Dependencies
         run: |
-          bash ./scripts/convert.sh ${{ inputs.DEVICE_PATH }}/${{ steps.buildtree.outputs.value }}.dependencies
+          bash ${GITHUB_WORKSPACE}/scripts/convert.sh ${{ inputs.DEVICE_PATH }}/${{ steps.buildtree.outputs.value }}.dependencies
           cd workspace
           sudo repo sync -j$(nproc --all)
       
