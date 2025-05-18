@@ -57,8 +57,7 @@ jobs:
           mkdir ~/bin
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
-          sudo ln -sf ~/bi    - name: 检出
-      uses: actions/checkout@v3n/repo /usr/bin/repo
+          sudo ln -sf ~/bin/repo /usr/bin/repo
 
       - name: 初始化 repo
         run: |
