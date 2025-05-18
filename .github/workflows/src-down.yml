@@ -95,4 +95,5 @@ jobs:
       - name: 打包上传
         uses: actions/upload-artifact@v4
         with:
-          path: workspace
+          path: workspace/.repo
+          include-hidden-files: true
