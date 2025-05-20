@@ -72,10 +72,15 @@ jobs:
           cd workspace
           sudo repo sync -j$(nproc --all) --force-sync
 
-      - name: Clone device tree
+      - name: 拉取设备树
         run: |
           cd workspace
           git clone ${{ inputs.DEVICE_TREE_URL }} -b ${{ inputs.DEVICE_TREE_BRANCH }} ./${{ inputs.DEVICE_PATH }}
+
+      - name: 列表
+        run: |
+          cd workspace
+          ls
 
       #- name: Check Build Tree
       #  uses: haya14busa/action-cond@v1
