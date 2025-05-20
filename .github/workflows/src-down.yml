@@ -100,5 +100,26 @@ jobs:
       - name: 打包上传
         uses: actions/upload-artifact@v4
         with:
-          path: workspace/.repo
+          path: |
+            workspace/.repo
+            workspace/Android.bp
+            workspace/Makefile
+            workspace/android
+            workspace/art
+            workspace/bionic
+            workspace/bootable
+            workspace/bootstrap.bash
+            workspace/build
+            workspace/dalvik
+            workspace/device
+            workspace/external
+            workspace/frameworks
+            workspace/hardware
+            workspace/libcore
+            workspace/libnativehelper
+            workspace/sdk
+            workspace/system
+            workspace/toolchain
+            workspace/tools
+            workspace/vendor
           include-hidden-files: true
