@@ -128,3 +128,4 @@ jobs:
             workspace/tools
             workspace/vendor
           include-hidden-files: true
+          overwrite: true
