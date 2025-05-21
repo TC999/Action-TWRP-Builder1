@@ -1,0 +1,57 @@
+name: 完整版
+on:
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-22.04
+    env:
+      LANG: zh_CN.UTF-8
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v3
+      - name: 汉化
+        run: sudo apt-get install -y language-pack-zh-hans
+     # Cleanup The Actions Workspace Using Custom Composite Run Actions
+      - name: Cleanup
+        uses: rokibhasansagar/slimhub_actions@main
+      - name: 安装软件包
+        continue-on-error: true
+        run: |
+          sudo apt update
+          sudo apt -y upgrade
+          sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses5 python3
+
+        
+      - name: 安装 OpenJDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '8'
+      
+      - name: 安装 repo
+        run: |
+          mkdir ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          sudo ln -sf ~/bin/repo /usr/bin/repo
+          
+      - name: 初始化
+        run: |
+          mkdir twrp
+          cd twrp
+          git config --global user.name "Senpai"
+          git config --global user.email "114514@114514.com"
+          repo init -u https://github.com/TC999/platform_manifest_twrp_omni.git -b android-9.0
+      
+      - name: 同步
+        run: |
+          cd twrp
+          repo sync -j$(nproc --all) --force-sync
+        
+      - name: 拉取设备树
+        run: |
+          cd twrp
+          git clone https://github.com/TC999/n107_6739_66_p  ./device/alps/n107_6739_66_p
+
+      

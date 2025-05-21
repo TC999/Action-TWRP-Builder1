@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Please do not manually edit this file-->
+<manifest>
+    <project name="OmniROM/android_bootable_recovery" path="bootable/recovery" remote="github" revision="android-9.0" />
+    <project name="OmniROM/android_external_busybox" path="external/busybox" remote="github" revision="android-9.0" />
+</manifest>
