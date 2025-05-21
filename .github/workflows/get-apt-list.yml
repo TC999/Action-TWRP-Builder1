@@ -6,6 +6,8 @@ jobs:
   Get:
     runs-on: ubuntu-24.04
     steps:
+      - name: 新建文件夹
+        run: mkdir sources
       - name: 获取 apt 源列表
         run: sudo cp /etc/apt/sources.list sources/sources.list
       - name: 打包上传
