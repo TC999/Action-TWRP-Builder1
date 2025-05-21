@@ -8,12 +8,12 @@ jobs:
     env:
       LANG: zh_CN.UTF-8
     steps:
-      - name: Check Out
+      - name: 检出
         uses: actions/checkout@v3
       - name: 汉化
         run: sudo apt-get install -y language-pack-zh-hans
      # Cleanup The Actions Workspace Using Custom Composite Run Actions
-      - name: Cleanup
+      - name: 清理
         uses: rokibhasansagar/slimhub_actions@main
       - name: 安装软件包
         continue-on-error: true
@@ -79,7 +79,7 @@ jobs:
           export ALLOW_MISSING_DEPENDENCIES=true
           lunch omni_n107_6739_66_p-eng && make clean && make recoveryimage -j$(nproc --all)
       
-      - name: Upload to Release
+      - name: 发行
         uses: softprops/action-gh-release@v1
         with:
           files: | 
