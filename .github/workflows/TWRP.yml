@@ -70,7 +70,7 @@ jobs:
         mkdir deb
         wget http://ftp.us.debian.org/debian/pool/main/w/wxwidgets3.0/libwxgtk3.0-gtk3-dev_3.0.4+dfsg-8_amd64.deb
         wget http://security.debian.org/debian-security/pool/updates/main/n/ncurses/libncurses5_6.1+20181013-2+deb10u5_amd64.deb
-        dpkg -i *.deb
+        sudo dpkg -i *.deb
 
     - name: 安装penJDK
       uses: actions/setup-java@v3
