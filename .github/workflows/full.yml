@@ -41,7 +41,7 @@ jobs:
           cd twrp
           git config --global user.name "Senpai"
           git config --global user.email "114514@114514.com"
-          repo init -u https://github.com/TC999/platform_manifest_twrp_omni.git -b android-9.0
+          repo init -u https://github.com/TC999/platform_manifest_twrp_omni.git -b twrp-9.0
       
       - name: 同步
         run: |
@@ -57,7 +57,7 @@ jobs:
       - name: 拉取设备树
         run: |
           cd twrp
-          git clone https://github.com/TC999/n107_6739_66_p  ./device/alps/n107_6739_66_p
+          git clone https://github.com/TC999/n107_6739_66_p.git  ./device/alps/n107_6739_66_p
 
       - name: 设置 Swap 交换分区
         uses: pierotofy/set-swap-space@master
