@@ -39,8 +39,8 @@ jobs:
         run: |
           mkdir twrp
           cd twrp
-          git config --global user.name "Senpai"
-          git config --global user.email "114514@114514.com"
+          git config --global user.name "Senpai1145"
+          git config --global user.email "114514@1919810.com"
           repo init -u https://github.com/TC999/platform_manifest_twrp_omni.git -b twrp-9.0
       
       - name: 同步
