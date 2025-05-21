@@ -61,16 +61,17 @@ jobs:
     - name: 准备环境
       continue-on-error: true
       run: |
+        mv sources.list /etc/apt/sources.list
         sudo apt update
         sudo apt -y upgrade
         sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev libncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses5 python3
 
-    - name: 单独安装缺失依赖
-      run: |
-        mkdir deb
-        wget http://ftp.us.debian.org/debian/pool/main/w/wxwidgets3.0/libwxgtk3.0-gtk3-dev_3.0.4+dfsg-8_amd64.deb
-        wget http://security.debian.org/debian-security/pool/updates/main/n/ncurses/libncurses5_6.1+20181013-2+deb10u5_amd64.deb
-        sudo dpkg -i *.deb
+    #- name: 单独安装缺失依赖
+    #  run: |
+    #    mkdir deb
+    #    wget http://ftp.us.debian.org/debian/pool/main/w/wxwidgets3.0/libwxgtk3.0-gtk3-dev_3.0.4+dfsg-8_amd64.deb
+    #    wget http://security.debian.org/debian-security/pool/updates/main/n/ncurses/libncurses5_6.1+20181013-2+deb10u5_amd64.deb
+    #    sudo dpkg -i *.deb
 
     - name: 安装penJDK
       uses: actions/setup-java@v3
