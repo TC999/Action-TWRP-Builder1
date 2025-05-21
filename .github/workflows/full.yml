@@ -48,9 +48,14 @@ jobs:
           cd twrp
           repo sync -j$(nproc --all) --force-sync
 
+      - name: 新建文件夹
+        run: |
+          cd twrp/.repo && mkdir local_manifests
+
       - name: 下载 twrp 源码
         run : |
           sudo mv roomservice.xml twrp/.repo/local_manifests/roomservice.xml
+          cd twrp
           repo sync --force-sync bootable/recovery
           repo sync --force-sync external/busybox
         
