@@ -53,6 +53,7 @@ jobs:
           cd twrp/.repo && mkdir local_manifests
 
       - name: 下载 twrp 源码
+        continue-on-error: true
         run : |
           sudo mv roomservice.xml twrp/.repo/local_manifests/roomservice.xml
           cd twrp
